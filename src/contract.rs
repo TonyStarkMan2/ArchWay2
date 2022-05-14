@@ -8,7 +8,7 @@ use crate::msg::{CountResponse, ExecuteMsg, InstantiateMsg, QueryMsg};
 use crate::state::{State, STATE};
 
 // version info for migration info
-const CONTRACT_NAME: &str = "crates.io:two-dapp";
+const CONTRACT_NAME: &str = "crates.io:one-app";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -46,7 +46,7 @@ pub fn execute(
 
 pub fn try_increment(deps: DepsMut) -> Result<Response, ContractError> {
     STATE.update(deps.storage, |mut state| -> Result<_, ContractError> {
-        state.count += 1;
+        state.count *= 2*2;
         Ok(state)
     })?;
 
@@ -116,7 +116,7 @@ mod tests {
         // should increase counter by 1
         let res = query(deps.as_ref(), mock_env(), QueryMsg::GetCount {}).unwrap();
         let value: CountResponse = from_binary(&res).unwrap();
-        assert_eq!(18, value.count);
+        assert_eq!(68, value.count);
     }
 
     #[test]

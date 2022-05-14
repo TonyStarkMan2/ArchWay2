@@ -2,7 +2,7 @@
   "name": "two-dapp",
   "developer": {
     "archwayd": {
-      "docker": true
+      "docker": false
     },
     "scripts": {
       "test": "cargo unit-test",
@@ -12,7 +12,31 @@
       "query": "archwayd query wasm",
       "tx": "archwayd tx wasm execute"
     },
-    "deployments": []
+    "deployments": [
+      {
+        "type": "set-metadata",
+        "chainId": "torii-1",
+        "contract": "archway1k878ws2szaj0szj7lf9tsprua5k7ef3n9h448g8qvsgpws9gtudsqxhsez",
+        "contractMetadata": {
+          "developerAddress": "archway1kmkfrw8c03fudzldwtsxhenep7kn7ca65x76vw",
+          "rewardAddress": "archway1kmkfrw8c03fudzldwtsxhenep7kn7ca65x76vw",
+          "collectPremium": false,
+          "gasRebate": false
+        }
+      },
+      {
+        "type": "instantiate",
+        "chainId": "torii-1",
+        "codeId": 49269,
+        "address": "archway1k878ws2szaj0szj7lf9tsprua5k7ef3n9h448g8qvsgpws9gtudsqxhsez",
+        "admin": "archway1kmkfrw8c03fudzldwtsxhenep7kn7ca65x76vw"
+      },
+      {
+        "type": "create",
+        "chainId": "torii-1",
+        "codeId": 49269
+      }
+    ]
   },
   "network": {
     "name": "torii",
